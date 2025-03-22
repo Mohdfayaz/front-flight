@@ -1,19 +1,18 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectEmail, selectName, selectPassword, setEmail, setName, setPassword } from "../redux/features/auth/registerSlice";
 
 const Register = () => {
  
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    password: ''
-  })
+  const name = useSelector(selectName);
+  const email = useSelector(selectEmail);
+  const password = useSelector(selectPassword);
   
-  
+  const dispatch = useDispatch();
   
   const handleRegister = async (e) => {
     e.preventDefault();
     console.log('Registering user...');
-    console.log(form);
+    console.log(name, email, password);
  }
   return (
     <div className="max-w-xs mx-auto mt-20 p-4 border rounded">
@@ -24,24 +23,24 @@ const Register = () => {
           type="text"
           placeholder="Name"
           className="border p-2 rounded"
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          value={name}
+          onChange={(e) => dispatch(setName(e.target.value) )}
         />
         <input
           name="email"
           type="email"
           placeholder="Email"
           className="border p-2 rounded"
-         value={form.email}
-         onChange={(e) => setForm({ ...form, email: e.target.value })}
+         value={email}
+         onChange={(e) => dispatch(setEmail(e.target.value ))}
         />
         <input
           name="password"
           type="password"
           placeholder="Password"
           className="border p-2 rounded"
-          value={form.password}      
-         onChange={(e) => setForm({ ...form, password: e.target.value })}
+          value={password}      
+         onChange={(e) => dispatch(setPassword(e.target.value ))}
         />
               <button className='bg-blue-500 text-white py-2 rounded' type="submit">Register</button>
       </form>
