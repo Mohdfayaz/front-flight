@@ -14,6 +14,6 @@ const authServices = {
   me: async () => {
     return await instance.get('/auth/me');
   }
-};
+}
 
 export default authServices;
