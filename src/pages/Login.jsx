@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectEmail, selectPassword,setEmail, setPassword,} from "../redux/features/auth/loginSlice";
+import { selectEmail, selectPassword, setEmail, setPassword,} from "../redux/features/auth/loginSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import authServices from "../services/authServices";
 
 const Login = () => {
+  
   const email = useSelector(selectEmail);
   const password = useSelector(selectPassword);
 
@@ -15,11 +16,11 @@ const Login = () => {
     e.preventDefault();
 
     try {
+      
       const response = await authServices.login({ email, password });
 
       if (response.status === 200) {
         toast.success("Logged in successfully");
-
 
         // clear the form
         dispatch(setEmail(""));
@@ -27,13 +28,13 @@ const Login = () => {
 
         // redirect to home page
         setTimeout(() => {
-          navigate("/", { replace: true });
+          navigate("/");
         }, 500);
       }
     } catch (error) {
       toast.error(error.response.data.message);
     }
-  }
+  };
 
   return (
     <div className="max-w-xs mx-auto mt-20 p-4 border rounded">
@@ -61,4 +62,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login
