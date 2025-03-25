@@ -1,9 +1,13 @@
-import { Outlet } from "react-router";
+import { Outlet, useLoaderData } from "react-router";
 import Layout from "./layouts/Layout";
 
 const App = () => {
+ 
+  const user = useLoaderData();
+ 
   return (
-    <Layout>
+    <Layout
+    user={user}>
       <Outlet />
  </Layout>
   )
