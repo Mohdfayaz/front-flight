@@ -53,7 +53,7 @@ const Layout = ({ children, user }) => {
           {user && (
             <button
               className="bg-red-500 px-3 py-1 rounded"
-              onClick={() => navigate("/logout")}
+              onClick={() => navigate("/logout", { replace: true })}
             >
               Logout
             </button>

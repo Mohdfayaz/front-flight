@@ -21,14 +21,15 @@ const Login = () => {
 
       if (response.status === 200) {
         toast.success("Logged in successfully");
-
+        
+        
         // clear the form
         dispatch(setEmail(""));
         dispatch(setPassword(""));
 
         // redirect to home page
         setTimeout(() => {
-          navigate("/");
+          navigate("/", { replace: true });
         }, 500);
       }
     } catch (error) {
