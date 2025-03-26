@@ -7,8 +7,8 @@ const store = configureStore({
   reducer: {
     register: registerReducer,
     login: loginReducer,
-    user: userReducer
-  }
+    user: userReducer,
+  },
 });
 
 export default store;

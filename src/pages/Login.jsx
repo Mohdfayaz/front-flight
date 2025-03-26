@@ -1,11 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectEmail, selectPassword, setEmail, setPassword,} from "../redux/features/auth/loginSlice";
+import {
+  selectEmail,
+  selectPassword,
+  setEmail,
+  setPassword,
+} from "../redux/features/auth/loginSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import authServices from "../services/authServices";
+import { setUser } from "../redux/features/auth/userSlice";
 
 const Login = () => {
-  
   const email = useSelector(selectEmail);
   const password = useSelector(selectPassword);
 
@@ -16,13 +21,15 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      
       const response = await authServices.login({ email, password });
 
       if (response.status === 200) {
         toast.success("Logged in successfully");
-        
-        
+
+        // call the authLoader to get the user data
+        const response = await authServices.me();
+        dispatch(setUser(response.data));
+
         // clear the form
         dispatch(setEmail(""));
         dispatch(setPassword(""));
@@ -63,4 +70,4 @@ const Login = () => {
   );
 };
 
-export default Login
+export default Login;
