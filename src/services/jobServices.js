@@ -2,7 +2,7 @@ import instance from "./instance";
 
 const jobServices = {
   getJobs: async () => {
-    return await instance.get("/user/jobs");
+    return await instance.get('/user/jobs');
   },
   getJob: async (id) => {
     return await instance.get(`/user/jobs/${id}`);

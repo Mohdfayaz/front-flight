@@ -7,6 +7,6 @@ const jobsLoader = async () => {
   } catch (error) {
     return [];
   }
-};
+}
 
 export default jobsLoader;
